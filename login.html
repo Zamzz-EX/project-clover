@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Clover Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpg" href="./logo.jpg">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+
+    <!-- Form Login -->
+    <form id="login-form">
+      <label for="login-username">Username</label>
+      <input type="text" id="login-username" autocomplete="username" placeholder="Username" required />
+
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" autocomplete="current-password" placeholder="Password" required />
+
+      <button type="submit">Login</button>
+      <div class="message" id="login-message" role="alert" aria-live="polite"></div>
+    </form>
+
+    <!-- Navigasi Tambahan -->
+    <div class="toggle-link" onclick="window.location.href='register.html'">
+      Belum punya akun? Daftar di sini.
+    </div>
+
+    <div class="toggle-link" onclick="window.location.href='index.html'">
+      ⬅ Kembali ke Beranda
+    </div>
+  </div>
+
+  <!-- Script Login Logic -->
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const loginMessage = document.getElementById('login-message');
+
+    function getUsers() {
+      const usersJSON = localStorage.getItem('simple-login-users');
+      return usersJSON ? JSON.parse(usersJSON) : {};
+    }
+
+    function saveSession(username) {
+      localStorage.setItem('simple-login-session', username);
+    }
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      loginMessage.textContent = '';
+
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      if (!username || !password) {
+        loginMessage.textContent = 'Silakan isi semua kolom.';
+        return;
+      }
+
+      const users = getUsers();
+      if (!users[username] || users[username].password !== password) {
+        loginMessage.textContent = 'Username atau Password salah.';
+        return;
+      }
+
+      saveSession(username);
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

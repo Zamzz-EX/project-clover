@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Account Profile</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    #photoInput {
+      display: none;
+    }
+    .profile-pic {
+      cursor: pointer;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid #ccc;
+    }
+
+    nav a {
+      margin-right: 10px;
+      text-decoration: none;
+    }
+    nav a.active {
+      font-weight: bold;
+      color: green;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <a href="#" class="nav-link active" data-tab="profile">Edit Profile</a>
+    <a href="#" class="nav-link" data-tab="password">Edit Password</a>
+  </nav>
+
+  <!-- Profile Card -->
+  <div class="profile-container">
+    <div class="profile-card">
+      <img id="profilePicPreview" src="" alt="User Photo" class="profile-pic" />
+      <input type="file" id="photoInput" accept="image/*" />
+      <h2 class="editable">Username</h2>
+
+      <div class="info-group">
+        <div class="info-row">
+          <label>Email</label>
+          <span class="editable" contenteditable="true">example@email.com</span>
+        </div>
+        <div class="info-row">
+          <label>Address</label>
+          <span class="editable" contenteditable="true">Your address</span>
+        </div>
+        <div class="info-row">
+          <label>Nickname</label>
+          <span class="editable" contenteditable="true">Your nickname</span>
+        </div>
+        <div class="info-row">
+          <label>DOB</label>
+          <span class="editable" contenteditable="true">January 1, 2000</span>
+        </div>
+      </div>
+
+      <button id="saveBtn">Save Profile</button>
+      <p id="saveMessage" class="save-message"></p>
+    </div>
+
+    <div class="password-card" style="display: none;">
+      <h2>Edit Password</h2>
+      <div class="info-group">
+        <div class="info-row">
+          <label>Password Lama</label>
+          <input type="password" id="oldPassword" placeholder="Password lama" />
+        </div>
+        <div class="info-row">
+          <label>Password Baru</label>
+          <input type="password" id="newPassword" placeholder="Password baru" />
+        </div>
+        <div class="info-row">
+          <label>Konfirmasi Password</label>
+          <input type="password" id="confirmPassword" placeholder="Konfirmasi password baru" />
+        </div>
+      </div>
+      <button id="savePasswordBtn">Simpan Password</button>
+      <p id="passwordMessage" class="save-message"></p>
+    </div>
+
+  </div>
+
+  <script>
+    const defaultSVG = `data:image/svg+xml;base64,${btoa(`
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="#ccc" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 20c0-4 4-7 8-7s8 3 8 7" />
+      </svg>
+    `)}`;
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentUser = localStorage.getItem('simple-login-session');
+      if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('simple-login-users') || '{}');
+      let data = users[currentUser];
+      if (!data) {
+        localStorage.removeItem('simple-login-session');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Elemen-elemen
+      const profilePic = document.getElementById('profilePicPreview');
+      const photoInput  = document.getElementById('photoInput');
+      const spans       = document.querySelectorAll('.info-group .info-row .editable');
+      const saveBtn     = document.getElementById('saveBtn');
+      const saveMsg     = document.getElementById('saveMessage');
+      const navLinks    = document.querySelectorAll('.nav-link');
+      const profileCard = document.querySelector('.profile-card');
+      const passwordCard= document.querySelector('.password-card');
+      const oldPwdInput = document.getElementById('oldPassword');
+      const newPwdInput = document.getElementById('newPassword');
+      const confPwdInput= document.getElementById('confirmPassword');
+      const pwdBtn      = document.getElementById('savePasswordBtn');
+      const pwdMsg      = document.getElementById('passwordMessage');
+
+      // Tampilkan profil
+      profilePic.src = data.photoFilename || defaultSVG;
+      document.querySelector('h2.editable').textContent = currentUser;
+      spans[0].textContent = data.email    || '';
+      spans[1].textContent = data.address  || '';
+      spans[2].textContent = data.nickname || '';
+      spans[3].textContent = data.dob      || '';
+
+      // Upload foto
+      profilePic.addEventListener('click', () => photoInput.click());
+      photoInput.addEventListener('change', async e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const base64 = await toBase64(file);
+        profilePic.src = base64;
+        data.photoFilename = base64;
+      });
+
+      // Simpan Profil
+      saveBtn.addEventListener('click', () => {
+        const email    = spans[0].textContent.trim();
+        const address  = spans[1].textContent.trim();
+        const nickname = spans[2].textContent.trim();
+        const dob      = spans[3].textContent.trim();
+        const photo    = profilePic.src;
+        data = { ...data, email, address, nickname, dob, photoFilename: photo };
+        users[currentUser] = data;
+        localStorage.setItem('simple-login-users', JSON.stringify(users));
+        saveMsg.textContent = '✅ Profile berhasil disimpan!';
+        setTimeout(() => saveMsg.textContent = '', 3000);
+      });
+
+      // Navigasi Tab
+      navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          if (link.dataset.tab === 'profile') {
+            profileCard.style.display = 'block';
+            passwordCard.style.display = 'none';
+          } else {
+            profileCard.style.display = 'none';
+            passwordCard.style.display = 'block';
+          }
+        });
+      });
+
+      // Edit Password
+      pwdBtn.addEventListener('click', () => {
+        const oldPass = oldPwdInput.value.trim();
+        const newPass = newPwdInput.value.trim();
+        const confPass= confPwdInput.value.trim();
+
+        if (!oldPass || !newPass || !confPass) {
+          pwdMsg.textContent = '❗ Semua kolom harus diisi.';
+          return;
+        }
+        if (data.password !== oldPass) {
+          pwdMsg.textContent = '❌ Password lama salah.';
+          return;
+        }
+        if (newPass !== confPass) {
+          pwdMsg.textContent = '❌ Password baru tidak cocok.';
+          return;
+        }
+
+        data.password = newPass;
+        users[currentUser] = data;
+        localStorage.setItem('simple-login-users', JSON.stringify(users));
+        pwdMsg.textContent = '✅ Password berhasil diubah!';
+        setTimeout(() => pwdMsg.textContent = '', 3000);
+
+        oldPwdInput.value = '';
+        newPwdInput.value = '';
+        confPwdInput.value = '';
+      });
+    });
+  </script>
+</body>
+</html>

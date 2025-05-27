@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Ini penting untuk mencegah scroll */
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh; /* pastikan 100% tinggi viewport */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background-color: #545454; /* Hijau Clover */
+    width: 250px;
+    min-width: 250px;
+    padding-top: 20px;
+    position: relative;
+    transition: width 0.3s;
+  }
+  
+  .sidebar.collapsed {
+    width: 70px;
+    min-width: 70px;
+  }
+  
+  .logo-area {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-list li a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .nav-list li a:hover {
+    background-color:#545454; /* Hijau Clover yang lebih gelap */
+  }
+  
+  .icon {
+    font-size: 20px;
+    width: 30px;
+  }
+  
+  .text {
+    margin-left: 10px;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  
+  /* Hide text when collapsed */
+  .sidebar.collapsed .text {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
+  }
+  
+  /* Toggle Button */
+  .toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: -15px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: #545454; /* Hijau tua untuk tombol */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+    font-size: 14px;
+    z-index: 10;
+  }
+  
+  .sidebar.collapsed .toggle-btn {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  
+  /* Main content */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .content {
+    flex: 1;
+    overflow-y: auto; /* scroll hanya di bagian konten */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  .header {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  /* .content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+  } */
+  
+  .back-button {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #000000; /* Hijau Clover */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .back-button:hover {
+    text-decoration: underline;
+  }
+  .nav-list a.active {
+    background-color: #e0e0e0;
+    border-radius: 6px;
+  }
+  .content-section {
+    max-width: 300px; /* atau sesuaikan lebar sesuai layout kamu */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .content-section img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .logout-area {
+    margin-top: auto;
+    padding: 0; /* Hapus padding di container */
+  }
+  
+  .logout-area a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  
+  .logout-area .icon {
+    margin-right: 0.5rem;
+    color: white;
+  }
+
+  .nav-list li a:hover,
+  .logout-area a:hover {
+    background-color: #3e3e3e; /* sedikit lebih gelap */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }

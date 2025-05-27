@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clover Home Page</title>
+  <link rel="icon" type="image/jpg" href="./logo.jpg">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">Clover✚</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#about">About us</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="login.html" class="login">Log in</a>
+        <a href="register.html" class="signup">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="typing-wrapper">
+        <h1>
+          <span id="typing" class="typing-text"></span>
+          <span class="cursor"></span>
+        </h1>
+        <p class="subtext">We provide agricultural management services.</p>
+      </div>
+      <!-- <div class="text">
+        <h1 class="typing-text" id="typing"></h1>
+        <p>We provide agricultural management services.</p>
+      </div> -->
+      <div class="image">
+        <img src="./logo.png" alt="Clover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Section (Updated) -->
+  <section class="feature">
+    <div class="container feature-text">
+      <div class="feature-row">
+        <div class="feature-image">
+          <img src="175-Article_Text-429-1-10-20210818-removebg-preview.png" 
+               alt="Logo SMAN 5 Tambun Selatan" />
+        </div>
+        <div class="feature-info">
+          <span class="label">We Are From</span>
+          <h2>SMAN 5 TAMBUN SELATAN</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Kami mengembangkan website bernama "Clover" yang memudahkan para petani dan memberikan edukasi digital berbasis web dan juga membangun ekosistem pertanian digital yang dapat digunakan oleh seluruh lapisan petani, termasuk di daerah terpencil.
+      </p>
+  
+      <!-- Team Profiles -->
+      <div class="team">
+        <div class="profile">
+          <img src="nizam.jpeg" alt="NIZAM">
+          <h3>ZAMZZ</h3>
+        </div>
+        <div class="profile">
+          <img src="devin.jpeg">
+          <h3>JOYBOY</h3>
+        </div>
+        <div class="profile">
+          <img src="hosea.jpeg">
+          <h3>HOSII</h3>
+        </div>
+        <div class="profile">
+          <img src="zidan.jpeg">
+          <h3>ZIDAN</h3>
+        </div>
+        <div class="profile">
+            <img src="razan.jpeg">
+            <h3>YAZANKREN</h3>
+          </div>
+        <div class="profile">
+          <img src="reynar.jpeg">
+          <h3>RAYNAR</h3>
+        </div>
+        <div class="profile">
+          <img src="peter.jpeg">
+          <h3>PETER</h3>
+        </div>
+        <div class="profile">
+          <img src="alif.jpeg">
+          <h3>ITSMEA</h3>
+        </div>
+        <div class="profile">
+          <img src="fauzan.jpeg">
+          <h3>OJANNAMD</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Clover Team - SMAN 5 Tambun Selatan. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const textEl = document.getElementById("typing");
+    const words = ["Bertani", "semakin", "mudah", "dengan", "Clover!"];
+    let w = 0;
+  
+    function typeWord() {
+      const word = words[w];
+      let i = 0;
+  
+      function typeChar() {
+        if (i < word.length) {
+          textEl.textContent += word[i++];
+          setTimeout(typeChar, 75);
+        } else {
+          textEl.textContent += " ";
+          w = (w + 1) % words.length;
+  
+          if (w === 0) {
+            // Kalau sudah selesai semua kata, tunggu 2 detik baru hapus dan mulai ulang
+            setTimeout(() => {
+              textEl.textContent = "";
+              typeWord();
+            }, 2000);
+          } else {
+            // Kalau belum selesai semua kata, langsung ketik kata berikutnya
+            setTimeout(typeWord, 500);
+          }
+        }
+      }
+      typeChar();
+    }
+  
+    window.addEventListener("DOMContentLoaded", typeWord);
+  </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+  html {
+    scroll-behavior: smooth;
+  }
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f3f0ea; /* Latar belakang lembut */
+    color: #1e3528; /* Warna teks utama */
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Navbar */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 0;
+  }
+  
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #00bf63; /* Warna logo hijau khas Clover+ */
+  }
+  
+  nav a {
+    margin: 0 1rem;
+    position: relative;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: #1e3528;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #007f3f; /* Hijau atau sesuai warna tema kamu */
+    transition: width 0.3s ease;
+  }
+  
+  nav a:hover::after {
+    width: 100%;
+  }
+  
+  .auth-buttons a {
+    margin-left: 1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  .auth-buttons .login {
+    color: #1e3528; /* Teks tombol login */
+  }
+  
+  .auth-buttons .signup {
+    background-color: #007f3f; /* Tombol signup hijau */
+    color: #ffffff;
+  }
+  
+  /* Hero section */
+  .hero {
+    background-color: #f3f0ea; /* Background hero section */
+    padding: 4rem 0;
+  }
+  
+  .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .hero .text {
+    max-width: 50%;
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #1e3528;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #4a4a4a; /* Teks deskripsi hero */
+  }
+  
+  .cta-button {
+    background-color: #007f3f;
+    color: #ffffff;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #005c2d;
+  }
+  
+  /* Image */
+  .hero .image img {
+    max-width: 450px;
+  }
+  
+  /* Feature section */
+  .feature {
+    background-color: #ffffff;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  
+  .feature .label {
+    font-size: 0.85rem;
+    color: #9caea2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .feature h2 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    color: #1e3528;
+  }
+  
+  .feature p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+  .feature-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem; /* Jarak antara gambar dan teks */
+    flex-wrap: wrap; /* Biar responsif di layar kecil */
+  }
+  
+  .feature-image img {
+    width: 120px;
+    height: auto;
+  }
+  
+  .feature-info {
+    text-align: left;
+  }
+  
+  @media (max-width: 600px) {
+    .feature-row {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .hero {
+    position: relative;
+    background-color: #f3f0ea;
+    padding: 4rem 0;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../petani.jpg'); /* ✅ Sesuaikan path gambar */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* ✅ Efek parallax */
+        opacity: 0.3; /* Bisa diubah sesuai selera */
+        z-index: 0;
+      }
+
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+/* Footer */
+.footer {
+    background-color: #f3f0ea;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #4a4a4a;
+    font-size: 0.9rem;
+  }
+  
+  .footer a {
+    display: block;
+    margin-top: 0.5rem;
+    color: #007f3f;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* About Us Section */
+  .about {
+    background-color: #ffffff;
+    padding: 4rem 2rem;
+    color: #1e3528;
+    text-align: center;
+  }
+  
+  .about h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about p {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-size: 1rem;
+    color: #4a4a4a;
+    line-height: 1.7;
+  }
+  
+  /* Team Section */
+  .team {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .profile {
+    text-align: center;
+  }
+  
+  .profile img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Smooth transition */
+  }
+  
+  .profile img:hover {
+    transform: scale(1.1); /* Sedikit membesar saat hover */
+  }
+  
+  .profile h3 {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: #1e3528;
+  }
+
+  .footer {
+    background-color: #f3f3f3; /* Abu-abu muda */
+    padding: 20px 0;
+    text-align: center;
+    color: #4a4a4a; /* Abu-abu gelap untuk teks */
+    font-size: 14px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .footer a {
+    color: #4a4a4a; /* Konsisten dengan warna teks */
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+    color: #007f3f; /* Opsional: hijau saat hover */
+  }
+
+  .typing-wrapper {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #1e3528;
+    line-height: 1.2;      /* tinggi baris */
+    white-space: normal;   /* biar wrap */
+  }
+  
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;         /* sama dengan line-height */
+    background-color: #1e3528;
+    margin-left: 2px;
+    vertical-align: bottom;
+    animation: blinkCursor 0.75s step-end infinite;
+  }
+  
+  @keyframes blinkCursor {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 1; }
+  }

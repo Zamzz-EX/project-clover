@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clover Dashboard</title>
+  <link rel="icon" type="image/jpg" href="./logo.jpg">
+  <link rel="stylesheet" href="css/dashboard.css"/>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="logo-area">
+          <img src="logo.jpg" alt="Logo" class="logo"/>
+        </div>
+    
+        <ul class="nav-list">
+          <li>
+            <a href="#" data-section="Pemasukan">
+              <span class="icon">
+                <!-- SVG growth -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                  <path d="M32 32v432a16 16 0 0016 16h432" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                  <rect x="96" y="224" width="80" height="192" rx="20" ry="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                  <rect x="240" y="176" width="80" height="240" rx="20" ry="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                  <rect x="383.64" y="112" width="80" height="304" rx="20" ry="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                </svg>
+              </span>
+              <span class="text">Pemasukan</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-section="Produksi">
+              <span class="icon">
+                <!-- SVG monitoring -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                  <path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                  <circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
+                </svg>
+              </span>
+              <span class="text">Produksi</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-section="Profile">
+              <span class="icon">
+                <!-- SVG profile -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                  <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                  <path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
+                </svg>
+              </span>
+              <span class="text">Profile</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    
+      <!-- Tombol keluar paling bawah -->
+      <div class="logout-area">
+        <a href="index.html">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+              <path d="M304 336v40a40 40 0 01-40 40H96a40 40 0 01-40-40V136a40 40 0 0140-40h168a40 40 0 0140 40v40" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
+              <path d="M368 336l80-80-80-80M176 256h272" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+            </svg>
+          </span>
+          <span class="text">Keluar</span>
+        </a>
+      </div>
+    
+      <button id="toggle-btn" class="toggle-btn">❮</button>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <h1>Dashboard</h1>
+      </header>
+      <section class="content" id="dashboard-content">
+      </section>
+    </main>
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>

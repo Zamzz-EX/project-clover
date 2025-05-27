@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Produksi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+
+    select, button {
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+
+    canvas {
+      max-height: 250px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color:#166534;">Produksi</h1>
+
+    <label for="plant">Pilih Jenis Tanaman:</label>
+    <select id="plant" onchange="updateChart()">
+      <option value="padi">Padi</option>
+      <option value="jagung">Jagung</option>
+    </select>
+
+    <canvas id="chart" height="300"></canvas>
+
+    <button onclick="addInvestment()"
+        style="background:#16a34a; color:white; border:none; padding:0.75rem 1.5rem; border-radius:0.5rem; cursor:pointer;">
+      Lihat Pengeluaran Produksi
+    </button>
+  </div>
+
+  <script>
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    const dataByPlant = {
+      padi: [400, 380, 600, 750, 700, 900],
+      jagung: [200, 300, 450, 500, 650, 700]
+    };
+
+    const labelsByPlant = {
+      padi: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      jagung: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+    };
+
+    const ctx = document.getElementById('chart').getContext('2d');
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labelsByPlant.padi,
+        datasets: [{
+          label: 'Stock',
+          data: dataByPlant.padi,
+          borderColor: '#4ade80',
+          borderWidth: 3,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true } }
+      }
+    });
+
+    function updateChart() {
+      const selected = document.getElementById('plant').value;
+      chart.data.labels = labelsByPlant[selected];
+      chart.data.datasets[0].data = dataByPlant[selected];
+      chart.update();
+    }
+
+    function addInvestment() {
+      const selected = document.getElementById('plant').value;
+      const currentLength = labelsByPlant[selected].length;
+
+      const nextMonthIndex = currentLength % 12;
+      const nextMonth = monthNames[nextMonthIndex] + (Math.floor(currentLength / 12) > 0 ? ' ' + (Math.floor(currentLength / 12) + 1) : '');
+      labelsByPlant[selected].push(nextMonth);
+
+      const newValue = Math.floor(Math.random() * 500) + 500;
+      dataByPlant[selected].push(newValue);
+
+      updateChart();
+    }
+  </script>
+</body>
+</html>
